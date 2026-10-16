@@ -301,7 +301,7 @@ export default function App() {
                   <span>Kataria Grah Udyog • Since 1984</span>
                 </div>
 
-                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[#9E2016] font-bold leading-[1.1] tracking-tight">
+                <h1 className="font-display hero-headline text-4xl sm:text-5xl lg:text-6xl text-[#9E2016] font-bold leading-[1.1] tracking-tight">
                   Meet your new <br />
                   <span className="italic font-normal text-[#7A1810]">snack-time favourites.</span>
                 </h1>
@@ -545,7 +545,7 @@ export default function App() {
             </div>
 
             {/* 8 Bestseller Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid responsive-product-grid gap-6">
               {BESTSELLER_PRODUCTS.map((product) => {
                 const isItemWishlisted = wishlist.some((w) => w.id === product.id);
                 return (
@@ -640,7 +640,7 @@ export default function App() {
             </div>
 
             {/* 8 Confectionery Products */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid responsive-product-grid gap-6">
               {CONFECTIONERY_PRODUCTS.map((product) => {
                 const isItemWishlisted = wishlist.some((w) => w.id === product.id);
                 return (
@@ -1115,7 +1115,7 @@ export default function App() {
       />
 
       {/* Add to Cart Floating Toasts */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none">
+      <div className="fixed bottom-20 md:bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none">
         {toasts.map((toast) => (
           <div 
             key={toast.id}
@@ -1129,6 +1129,48 @@ export default function App() {
           </div>
         ))}
       </div>
+
+      {/* Sticky Mobile Bottom Navigation Bar (Visible only on mobile screens <= 768px via CSS Media Query) */}
+      <nav className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#EAE2D5] py-2 px-3 justify-around items-center shadow-lg safe-area-bottom">
+        <a 
+          href="#bestsellers" 
+          className="flex flex-col items-center text-[#7A1810] hover:text-[#9E2016] text-[11px] font-semibold touch-target justify-center"
+        >
+          <Award className="w-5 h-5 mb-0.5 text-[#9E2016]" />
+          <span>Shop</span>
+        </a>
+        <button 
+          onClick={() => setIsSearchOpen(true)}
+          className="flex flex-col items-center text-[#7A1810] hover:text-[#9E2016] text-[11px] font-semibold touch-target justify-center cursor-pointer"
+        >
+          <Search className="w-5 h-5 mb-0.5" />
+          <span>Search</span>
+        </button>
+        <button 
+          onClick={() => setIsWishlistOpen(true)}
+          className="relative flex flex-col items-center text-[#7A1810] hover:text-[#9E2016] text-[11px] font-semibold touch-target justify-center cursor-pointer"
+        >
+          <Heart className="w-5 h-5 mb-0.5" />
+          <span>Wishlist</span>
+          {wishlist.length > 0 && (
+            <span className="absolute top-0 right-1 bg-[#E09F3E] text-[#7A1810] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              {wishlist.length}
+            </span>
+          )}
+        </button>
+        <button 
+          onClick={() => setIsCartOpen(true)}
+          className="relative flex flex-col items-center text-[#9E2016] hover:text-[#7A1810] text-[11px] font-bold touch-target justify-center cursor-pointer"
+        >
+          <ShoppingBag className="w-5 h-5 mb-0.5" />
+          <span>Cart</span>
+          {totalCartCount > 0 && (
+            <span className="absolute top-0 right-1 bg-[#C0392B] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              {totalCartCount}
+            </span>
+          )}
+        </button>
+      </nav>
 
     </div>
   );
