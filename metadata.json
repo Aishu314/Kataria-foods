@@ -1,0 +1,6 @@
+{
+  "name": "Kataria Foods Official Store",
+  "description": "Authentic sun-ripened Alphonso pulps, nostalgic sour imli bites, handcrafted fruit katlis, and traditional Rajasthani confectionery craftsmanship.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
