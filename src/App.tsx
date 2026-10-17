@@ -110,46 +110,115 @@ export default function App() {
     <div className="min-h-screen bg-[#FAF6F0] text-[#221A14] flex flex-col font-body selection:bg-[#E09F3E]/30 selection:text-[#7A1810]">
       
       {/* Top Announcement Bar */}
-      <div className="bg-[#7A1810] text-white py-2 px-4 text-center text-xs tracking-wide flex items-center justify-center gap-2">
-        <Truck className="w-4 h-4 text-[#E09F3E] shrink-0" />
+      <div className="bg-[#7A1810] text-white py-1 px-3 text-center text-xs tracking-wide flex items-center justify-center gap-2">
+        <Truck className="w-3.5 h-3.5 text-[#E09F3E] shrink-0" />
         <span>Free Delivery across India on orders over ₹499 | Buy 2 Get 1 Sale Live!</span>
       </div>
 
       {/* Global Header Navigation */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#EAE2D5] shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between gap-6">
-          
-          {/* Logo & Brand Name */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-full bg-[#9E2016] flex items-center justify-center text-white shadow-sm overflow-hidden p-1.5 transition-transform group-hover:scale-105">
-              <img 
-                src="https://lh3.googleusercontent.com/aida/AEtjO1U696bhqR5ROInDwzJmgrJ8eTv2PhBLqyQDiBsTt_m49geAaeeUIoLy1rOFhmlBB-EhnOU72Z7pouOyqZDOtctxff4t4qf6vHHzuDs2cDWKqGS5dQye_RSxt6AETxMPkb_1kfYIXKrbwxfFRdUpb2HwGfnLSyxB-YsJx_MJg4aMc18n97vFWX5UfTYm-rlUsyJsu2-Yj_HFAQS-jGModowt3updO-DE_OHzWrlBtfiuy7ykp6YrXMde8rik"
-                alt="Kataria Foods"
-                className="w-10 h-10 object-contain invert brightness-200"
-                onError={(e) => {
-                  const target = e.target as HTMLElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = '<span class="font-display font-bold text-lg">KF</span>';
-                  }
-                }}
-              />
-            </div>
-            <div>
-              <span className="font-display text-2xl font-bold text-[#9E2016] block leading-none tracking-tight">
-                Kataria Foods
-              </span>
-              <span className="text-[11px] tracking-widest text-[#6B5A52] uppercase font-semibold">
-                Kataria Grah Udyog
-              </span>
-            </div>
-          </a>
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
+          {/* Main Bar with Heading in the Middle */}
+          <div className="h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4 relative">
+            
+            {/* Left Actions / Mobile Menu Toggle */}
+            <div className="flex items-center gap-2 sm:gap-3 flex-1 justify-start">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2 text-[#55443B] hover:bg-[#FAF6F0] rounded-lg transition-colors cursor-pointer"
+                aria-label="Toggle mobile menu"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
 
-          {/* Desktop Navigation Menu */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold">
-            <a href="#bestsellers" className="text-[#9E2016] border-b-2 border-[#9E2016] pb-1">
-              Shop
+              <button 
+                onClick={() => setIsSearchOpen(true)}
+                aria-label="Search delicacies"
+                className="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#55443B] hover:text-[#9E2016] bg-[#FAF6F0] hover:bg-[#F9E4B7]/40 px-3 py-1.5 rounded-full border border-[#EAE2D5] transition-colors cursor-pointer"
+              >
+                <Search className="w-3.5 h-3.5 text-[#9E2016]" />
+                <span>Search delicacies...</span>
+              </button>
+
+              <button 
+                onClick={() => setIsWholesaleOpen(true)}
+                className="hidden lg:flex items-center gap-1.5 text-xs font-bold text-[#7A1810] hover:text-[#9E2016] px-2.5 py-1 rounded-md hover:bg-[#FAF6F0] transition-colors cursor-pointer"
+              >
+                <Award className="w-3.5 h-3.5 text-[#E09F3E]" />
+                <span>Bulk Orders</span>
+              </button>
+            </div>
+
+            {/* Middle: Brand Heading Kataria Foods & Kataria Grah Udyog */}
+            <div className="flex flex-col items-center justify-center text-center px-2">
+              <a href="#" className="flex flex-col items-center group">
+                <div className="flex items-center gap-2 sm:gap-2.5 justify-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#9E2016] flex items-center justify-center text-white shadow-sm overflow-hidden p-1 transition-transform group-hover:scale-105 shrink-0">
+                    <img 
+                      src="https://lh3.googleusercontent.com/aida/AEtjO1U696bhqR5ROInDwzJmgrJ8eTv2PhBLqyQDiBsTt_m49geAaeeUIoLy1rOFhmlBB-EhnOU72Z7pouOyqZDOtctxff4t4qf6vHHzuDs2cDWKqGS5dQye_RSxt6AETxMPkb_1kfYIXKrbwxfFRdUpb2HwGfnLSyxB-YsJx_MJg4aMc18n97vFWX5UfTYm-rlUsyJsu2-Yj_HFAQS-jGModowt3updO-DE_OHzWrlBtfiuy7ykp6YrXMde8rik"
+                      alt="Kataria Foods"
+                      className="w-6 h-6 sm:w-8 sm:h-8 object-contain invert brightness-200"
+                      onError={(e) => {
+                        const target = e.target as HTMLElement;
+                        target.style.display = 'none';
+                        const parent = target.parentElement;
+                        if (parent) {
+                          parent.innerHTML = '<span class="font-display font-bold text-sm sm:text-base">KF</span>';
+                        }
+                      }}
+                    />
+                  </div>
+                  <span className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-[#9E2016] leading-none tracking-tight block text-center">
+                    Kataria Foods
+                  </span>
+                </div>
+                <span className="text-[9px] sm:text-[10px] tracking-[0.24em] text-[#6B5A52] uppercase font-bold text-center mt-1">
+                  Kataria Grah Udyog
+                </span>
+              </a>
+            </div>
+
+            {/* Right side Utility Actions */}
+            <div className="flex items-center gap-1.5 sm:gap-3 flex-1 justify-end">
+              <button 
+                onClick={() => setIsSearchOpen(true)}
+                aria-label="Search delicacies"
+                className="sm:hidden w-8 h-8 rounded-full flex items-center justify-center text-[#55443B] hover:bg-[#FAF6F0] transition-colors cursor-pointer"
+              >
+                <Search className="w-4 h-4" />
+              </button>
+
+              <button 
+                onClick={() => setIsWishlistOpen(true)}
+                aria-label="View Wishlist"
+                className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[#55443B] hover:bg-[#FAF6F0] transition-colors cursor-pointer"
+              >
+                <Heart className="w-4 h-4" />
+                {wishlist.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#E09F3E] text-[#7A1810] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {wishlist.length}
+                  </span>
+                )}
+              </button>
+
+              <button 
+                onClick={() => setIsCartOpen(true)}
+                aria-label="Cart"
+                className="relative flex items-center gap-1.5 sm:gap-2 bg-[#FAF6F0] hover:bg-[#F9E4B7]/60 text-[#9E2016] px-2.5 sm:px-3 py-1.5 rounded-full transition-colors shadow-xs cursor-pointer"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span className="text-xs font-bold hidden md:inline">Cart</span>
+                <span className="bg-[#C0392B] text-white text-[10px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-xs">
+                  {totalCartCount}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop Navigation Menu (Centered below heading) */}
+          <nav className="hidden lg:flex items-center justify-center gap-8 py-2.5 border-t border-[#EAE2D5]/70 text-xs font-bold uppercase tracking-wider">
+            <a href="#bestsellers" className="text-[#9E2016] border-b-2 border-[#9E2016] pb-0.5 hover:text-[#7A1810]">
+              Shop All
             </a>
             <a href="#categories" className="text-[#4A3D36] hover:text-[#9E2016] transition-colors">
               Fruit Bars
@@ -165,7 +234,7 @@ export default function App() {
               className="text-[#4A3D36] hover:text-[#9E2016] transition-colors flex items-center gap-1.5"
             >
               <span>Candies & Toffees</span>
-              <span className="bg-[#C0392B] text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+              <span className="bg-[#C0392B] text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
                 New
               </span>
             </a>
@@ -179,55 +248,11 @@ export default function App() {
               Our Heritage
             </a>
           </nav>
-
-          {/* Utility Actions */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            <button 
-              onClick={() => setIsSearchOpen(true)}
-              aria-label="Search delicacies"
-              className="w-10 h-10 rounded-full flex items-center justify-center text-[#55443B] hover:bg-[#FAF6F0] transition-colors"
-            >
-              <Search className="w-5 h-5" />
-            </button>
-
-            <button 
-              onClick={() => setIsWishlistOpen(true)}
-              aria-label="View Wishlist"
-              className="relative w-10 h-10 rounded-full flex items-center justify-center text-[#55443B] hover:bg-[#FAF6F0] transition-colors"
-            >
-              <Heart className="w-5 h-5" />
-              {wishlist.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#E09F3E] text-[#7A1810] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                  {wishlist.length}
-                </span>
-              )}
-            </button>
-
-            <button 
-              onClick={() => setIsCartOpen(true)}
-              aria-label="Cart"
-              className="relative w-10 h-10 rounded-full bg-[#FAF6F0] flex items-center justify-center text-[#9E2016] hover:bg-[#F9E4B7]/60 transition-colors shadow-xs"
-            >
-              <ShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-[#C0392B] text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-xs">
-                {totalCartCount}
-              </span>
-            </button>
-
-            {/* Mobile Hamburger */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#55443B] hover:bg-[#FAF6F0] rounded-xl"
-              aria-label="Toggle mobile menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
         </div>
 
         {/* Mobile Navigation Dropdown */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-[#EAE2D5] px-6 py-4 space-y-3">
+          <div className="lg:hidden bg-white border-b border-[#EAE2D5] px-4 py-3 space-y-2.5">
             <a 
               href="#bestsellers" 
               onClick={() => setMobileMenuOpen(false)}
@@ -272,15 +297,15 @@ export default function App() {
 
       <main className="flex-1">
         {/* Notification Ribbon */}
-        <section className="bg-[#F9E4B7] text-[#7A1810] py-2.5 px-4 border-b border-[#EAE2D5]">
-          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between text-xs font-semibold gap-2">
-            <div className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-[#C0392B] shrink-0" />
+        <section className="bg-[#F9E4B7] text-[#7A1810] py-2 px-3 border-b border-[#EAE2D5]">
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between text-xs font-semibold gap-1.5">
+            <div className="flex items-center gap-1.5">
+              <Award className="w-3.5 h-3.5 text-[#C0392B] shrink-0" />
               <span>A Legacy of Sweetness: Now presenting our comprehensive Kataria Foods pantry & confectionery collection.</span>
             </div>
-            <div className="flex items-center gap-4">
-              <span className="text-[#4A6B35] font-bold flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#4A6B35] animate-pulse"></span>
+            <div className="flex items-center gap-3">
+              <span className="text-[#4A6B35] font-bold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#4A6B35] animate-pulse"></span>
                 100% Real Fruit Sun-Dehydrated
               </span>
               <a href="#confectionery" className="text-[#C0392B] hover:text-[#7A1810] underline font-bold tracking-wide">
@@ -291,13 +316,13 @@ export default function App() {
         </section>
 
         {/* Hero Section */}
-        <section className="relative py-12 md:py-20 overflow-hidden bg-[#FAF6F0] border-b border-[#EAE2D5]">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <section className="relative py-6 md:py-10 overflow-hidden bg-[#FAF6F0] border-b border-[#EAE2D5]">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
-              <div className="lg:col-span-6 flex flex-col items-start gap-5">
-                <div className="inline-flex items-center gap-2 bg-[#F9E4B7]/80 text-[#7A1810] px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide border border-[#EAE2D5]">
-                  <Sparkles className="w-3.5 h-3.5 text-[#C0392B]" />
+              <div className="lg:col-span-6 flex flex-col items-start gap-4">
+                <div className="inline-flex items-center gap-1.5 bg-[#F9E4B7]/80 text-[#7A1810] px-3 py-1 rounded-full text-xs font-bold tracking-wide border border-[#EAE2D5]">
+                  <Sparkles className="w-3 h-3 text-[#C0392B]" />
                   <span>Kataria Grah Udyog • Since 1984</span>
                 </div>
 
@@ -382,21 +407,21 @@ export default function App() {
         </section>
 
         {/* Category Exploration Section */}
-        <section className="py-16 bg-white" id="categories">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12">
+        <section className="py-8 md:py-10 bg-white" id="categories">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6">
+            <div className="text-center max-w-2xl mx-auto mb-6">
               <span className="text-xs uppercase tracking-widest font-bold text-[#9E2016]">
                 The Kataria Foods Experience
               </span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-[#9E2016] mt-1">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#9E2016] mt-0.5">
                 Generations of Fruity Indulgence
               </h2>
-              <p className="text-sm md:text-base text-gray-600 mt-2">
+              <p className="text-xs md:text-sm text-gray-600 mt-1">
                 From timeless royal Rajasthani recipes to modern fruit snacking, discover our core pantry offerings.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               
               {/* Category 1: Fruit Bars */}
               <div 
@@ -502,22 +527,22 @@ export default function App() {
         </section>
 
         {/* Promotional Sale Banner */}
-        <section className="bg-[#C0392B] text-white py-10 px-4 md:px-8 shadow-inner">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <section className="bg-[#C0392B] text-white py-6 px-3 sm:px-6 shadow-inner">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <div>
-              <span className="bg-[#F9E4B7] text-[#7A1810] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+              <span className="bg-[#F9E4B7] text-[#7A1810] text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider inline-block">
                 Festive Pantry Offer
               </span>
-              <h3 className="font-display text-3xl font-bold mt-2">
+              <h3 className="font-display text-2xl md:text-3xl font-bold mt-1.5">
                 Buy Any 2 Confectioneries, Get 1 Free!
               </h3>
-              <p className="text-sm text-[#F9E4B7]/90 mt-1">
+              <p className="text-xs sm:text-sm text-[#F9E4B7]/90 mt-0.5">
                 Mix and match across authentic fruit bars, diamond katlis, and pet jars of tangy imli candies.
               </p>
             </div>
             <a 
               href="#confectionery" 
-              className="bg-white hover:bg-[#F9E4B7] text-[#9E2016] font-bold text-sm px-8 py-3.5 rounded-xl transition-colors shadow-md shrink-0"
+              className="bg-white hover:bg-[#F9E4B7] text-[#9E2016] font-bold text-xs sm:text-sm px-6 py-3 rounded-xl transition-colors shadow-md shrink-0"
             >
               Shop The Collection
             </a>
@@ -525,27 +550,27 @@ export default function App() {
         </section>
 
         {/* Section 1: Customer Hall of Fame (Loved Across India) */}
-        <section className="py-16 md:py-20 bg-[#FAF6F0]" id="bestsellers">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <section className="py-8 md:py-10 bg-[#FAF6F0]" id="bestsellers">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 gap-3">
               <div>
                 <span className="text-xs uppercase tracking-widest font-bold text-[#9E2016]">
                   Customer Hall of Fame
                 </span>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-[#9E2016] mt-1">
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-[#9E2016] mt-0.5">
                   Loved Across India
                 </h2>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-xs sm:text-sm text-gray-600 mt-0.5">
                   From corporate gifting to family snack boxes — Kataria Foods is a slice of home, delivered.
                 </p>
               </div>
-              <span className="bg-[#F9E4B7] text-[#7A1810] text-xs font-bold px-4 py-2 rounded-lg border border-[#EAE2D5] w-max">
+              <span className="bg-[#F9E4B7] text-[#7A1810] text-xs font-bold px-3 py-1.5 rounded-lg border border-[#EAE2D5] w-max">
                 8 Signature Picks
               </span>
             </div>
 
             {/* 8 Bestseller Cards */}
-            <div className="grid responsive-product-grid gap-6">
+            <div className="grid responsive-product-grid gap-4 sm:gap-5">
               {BESTSELLER_PRODUCTS.map((product) => {
                 const isItemWishlisted = wishlist.some((w) => w.id === product.id);
                 return (
@@ -619,28 +644,28 @@ export default function App() {
         </section>
 
         {/* Section 2: Confectionery & Candies Line (Newly Launched Under Kataria Foods) */}
-        <section className="py-16 md:py-24 bg-white" id="confectionery">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <section className="py-8 md:py-10 bg-white" id="confectionery">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 gap-3">
               <div>
-                <div className="inline-flex items-center gap-1.5 bg-[#F9E4B7] text-[#7A1810] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-[#C0392B]" />
+                <div className="inline-flex items-center gap-1.5 bg-[#F9E4B7] text-[#7A1810] px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider mb-1.5">
+                  <Sparkles className="w-3 h-3 text-[#C0392B]" />
                   <span>Newly Launched Under Kataria Foods</span>
                 </div>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-[#9E2016]">
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-[#9E2016]">
                   Traditional Candies, Toffees & Fruit Burfi Bars
                 </h2>
-                <p className="text-sm md:text-base text-gray-600 mt-1 max-w-2xl">
+                <p className="text-xs sm:text-sm text-gray-600 mt-0.5 max-w-2xl">
                   Now integrated seamlessly into the Kataria Foods house. Authentic tamarind burfis, tangy raw mango shots, chewy fruit cubes, and creamy mango toffees.
                 </p>
               </div>
-              <span className="text-xs font-bold text-[#4A6B35] bg-[#4A6B35]/10 border border-[#4A6B35]/20 px-3 py-1.5 rounded-lg w-max">
+              <span className="text-xs font-bold text-[#4A6B35] bg-[#4A6B35]/10 border border-[#4A6B35]/20 px-2.5 py-1 rounded-lg w-max">
                 Direct From Confectionery Factory
               </span>
             </div>
 
             {/* 8 Confectionery Products */}
-            <div className="grid responsive-product-grid gap-6">
+            <div className="grid responsive-product-grid gap-4 sm:gap-5">
               {CONFECTIONERY_PRODUCTS.map((product) => {
                 const isItemWishlisted = wishlist.some((w) => w.id === product.id);
                 return (
@@ -714,82 +739,82 @@ export default function App() {
         </section>
 
         {/* Legacy & Craftsmanship Section */}
-        <section className="py-16 md:py-24 bg-[#FAF6F0] border-t border-[#EAE2D5]" id="heritage">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <section className="py-8 md:py-10 bg-[#FAF6F0] border-t border-[#EAE2D5]" id="heritage">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
               <div className="lg:col-span-5">
-                <div className="relative rounded-2xl overflow-hidden shadow-lg border-4 border-white bg-white p-2 group">
+                <div className="relative rounded-2xl overflow-hidden shadow-lg border-4 border-white bg-white p-1.5 group">
                   <img 
                     src="/src/assets/images/craft_archive_heritage_1792174206620.jpg"
                     alt="Artisanal confectionery craft at Kataria Foods"
-                    className="w-full h-[380px] object-cover object-center rounded-xl group-hover:scale-102 transition-transform duration-500"
+                    className="w-full h-[320px] sm:h-[350px] object-cover object-center rounded-xl group-hover:scale-102 transition-transform duration-500"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="p-4 text-center">
-                    <span className="text-xs font-bold text-[#9E2016] uppercase tracking-widest">
+                  <div className="p-3 text-center">
+                    <span className="text-[11px] font-bold text-[#9E2016] uppercase tracking-widest">
                       Kataria Grah Udyog Archive
                     </span>
-                    <p className="text-sm font-bold text-gray-900 mt-0.5">
+                    <p className="text-xs sm:text-sm font-bold text-gray-900 mt-0.5">
                       Pioneers in Fruit Dehydration & Authentic Indian Sweets
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="lg:col-span-7 flex flex-col gap-5">
+              <div className="lg:col-span-7 flex flex-col gap-3.5">
                 <span className="text-xs uppercase tracking-widest font-bold text-[#C0392B]">
                   Generations of Craft
                 </span>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-[#9E2016] leading-tight">
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-[#9E2016] leading-tight">
                   A Legacy of Sweetness: Welcome to Kataria Foods
                 </h2>
-                <p className="text-sm md:text-base text-[#4A3D36] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#4A3D36] leading-relaxed">
                   Kataria Foods has long been synonymous with authentic packaged fruit bars, fruit katlis, masala aam papads, and digestive snacks. With our expanded confectionery line, we cherish age-old Indian confection recipes and blend them with modern manufacturing technology to bring you the best of both worlds.
                 </p>
-                <p className="text-sm md:text-base text-[#4A3D36] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#4A3D36] leading-relaxed">
                   We process harvest-fresh mangoes, raw kachha aam, tamarind (imli), Indian gooseberry (amla), strawberries, and guava into wholesome snacks that are naturally rich in fiber and free from cholesterol.
                 </p>
 
                 {/* 4 Core Pillars */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                  <div className="flex items-start gap-3 bg-white p-4 rounded-xl border border-[#EAE2D5] shadow-xs">
-                    <div className="w-10 h-10 rounded-lg bg-[#F9E4B7] text-[#9E2016] flex items-center justify-center shrink-0">
-                      <Award className="w-5 h-5" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  <div className="flex items-start gap-2.5 bg-white p-3 rounded-xl border border-[#EAE2D5] shadow-xs">
+                    <div className="w-9 h-9 rounded-lg bg-[#F9E4B7] text-[#9E2016] flex items-center justify-center shrink-0">
+                      <Award className="w-4 h-4" />
                     </div>
                     <div>
-                      <h5 className="text-sm font-bold text-gray-900">Unmatched Quality</h5>
-                      <p className="text-xs text-gray-500 mt-0.5">Finest ingredients and strict adherence to highest taste standards.</p>
+                      <h5 className="text-xs font-bold text-gray-900">Unmatched Quality</h5>
+                      <p className="text-[11px] text-gray-500 mt-0.5">Finest ingredients and strict adherence to highest taste standards.</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 bg-white p-4 rounded-xl border border-[#EAE2D5] shadow-xs">
-                    <div className="w-10 h-10 rounded-lg bg-[#F9E4B7] text-[#4A6B35] flex items-center justify-center shrink-0">
-                      <ShieldCheck className="w-5 h-5" />
+                  <div className="flex items-start gap-2.5 bg-white p-3 rounded-xl border border-[#EAE2D5] shadow-xs">
+                    <div className="w-9 h-9 rounded-lg bg-[#F9E4B7] text-[#4A6B35] flex items-center justify-center shrink-0">
+                      <ShieldCheck className="w-4 h-4" />
                     </div>
                     <div>
-                      <h5 className="text-sm font-bold text-gray-900">Hygiene & Safety</h5>
-                      <p className="text-xs text-gray-500 mt-0.5">State-of-the-art manufacturing complying with rigorous food safety norms.</p>
+                      <h5 className="text-xs font-bold text-gray-900">Hygiene & Safety</h5>
+                      <p className="text-[11px] text-gray-500 mt-0.5">State-of-the-art manufacturing complying with rigorous food safety norms.</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 bg-white p-4 rounded-xl border border-[#EAE2D5] shadow-xs">
-                    <div className="w-10 h-10 rounded-lg bg-[#F9E4B7] text-[#E09F3E] flex items-center justify-center shrink-0">
-                      <Sparkles className="w-5 h-5" />
+                  <div className="flex items-start gap-2.5 bg-white p-3 rounded-xl border border-[#EAE2D5] shadow-xs">
+                    <div className="w-9 h-9 rounded-lg bg-[#F9E4B7] text-[#E09F3E] flex items-center justify-center shrink-0">
+                      <Sparkles className="w-4 h-4" />
                     </div>
                     <div>
-                      <h5 className="text-sm font-bold text-gray-900">Traditional Taste</h5>
-                      <p className="text-xs text-gray-500 mt-0.5">Authentic recipes passed through generations, delivering real Indian nostalgia.</p>
+                      <h5 className="text-xs font-bold text-gray-900">Traditional Taste</h5>
+                      <p className="text-[11px] text-gray-500 mt-0.5">Authentic recipes passed through generations, delivering real Indian nostalgia.</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 bg-white p-4 rounded-xl border border-[#EAE2D5] shadow-xs">
-                    <div className="w-10 h-10 rounded-lg bg-[#F9E4B7] text-[#7A1810] flex items-center justify-center shrink-0">
-                      <ShoppingBag className="w-5 h-5" />
+                  <div className="flex items-start gap-2.5 bg-white p-3 rounded-xl border border-[#EAE2D5] shadow-xs">
+                    <div className="w-9 h-9 rounded-lg bg-[#F9E4B7] text-[#7A1810] flex items-center justify-center shrink-0">
+                      <ShoppingBag className="w-4 h-4" />
                     </div>
                     <div>
-                      <h5 className="text-sm font-bold text-gray-900">Modern Packaging</h5>
-                      <p className="text-xs text-gray-500 mt-0.5">Multi-layer freshness seals locking in aroma, crunch, and chew.</p>
+                      <h5 className="text-xs font-bold text-gray-900">Modern Packaging</h5>
+                      <p className="text-[11px] text-gray-500 mt-0.5">Multi-layer freshness seals locking in aroma, crunch, and chew.</p>
                     </div>
                   </div>
                 </div>
@@ -801,31 +826,31 @@ export default function App() {
         </section>
 
         {/* Wholesale & Bulk Order Banner */}
-        <section className="bg-[#9E2016] text-white py-14 px-4 md:px-8" id="bulk-orders">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
+        <section className="bg-[#9E2016] text-white py-8 px-3 sm:px-6" id="bulk-orders">
+          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-5">
             <div className="max-w-2xl text-center lg:text-left">
-              <span className="bg-[#F9E4B7] text-[#7A1810] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+              <span className="bg-[#F9E4B7] text-[#7A1810] text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider inline-block">
                 B2B & Corporate Supply
               </span>
-              <h3 className="font-display text-3xl md:text-4xl font-bold mt-2">
+              <h3 className="font-display text-2xl md:text-3xl font-bold mt-1.5">
                 Partner with Kataria Foods
               </h3>
-              <p className="text-sm md:text-base text-[#F9E4B7]/80 mt-2 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#F9E4B7]/80 mt-1 leading-relaxed">
                 Manufacturer of premium fruit bar toffees, candies, and dried fruit sweets. Flavours include Mango, Kachha Mango, Imli, Guava, Strawberry, and more. Perfect for retail distributors, supermarkets, export, and festive bulk gifting.
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
+            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
               <a 
                 href="tel:+919309489012" 
-                className="bg-[#E09F3E] hover:bg-white text-[#7A1810] font-bold text-sm px-7 py-3.5 rounded-xl transition-colors shadow-md flex items-center gap-2"
+                className="bg-[#E09F3E] hover:bg-white text-[#7A1810] font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition-colors shadow-md flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" />
                 <span>+91 9309489012</span>
               </a>
               <button 
                 onClick={() => setIsWholesaleOpen(true)}
-                className="bg-white/10 hover:bg-white/20 text-white font-bold text-sm px-6 py-3.5 rounded-xl border border-white/20 transition-colors cursor-pointer"
+                className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl border border-white/20 transition-colors cursor-pointer"
               >
                 Request Wholesale Catalog
               </button>
@@ -834,72 +859,72 @@ export default function App() {
         </section>
 
         {/* Partner & Distributor Testimonials */}
-        <section className="py-16 md:py-20 bg-white" id="testimonials">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="text-center max-w-xl mx-auto mb-12">
+        <section className="py-8 md:py-10 bg-white" id="testimonials">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6">
+            <div className="text-center max-w-xl mx-auto mb-6">
               <span className="text-xs uppercase tracking-widest font-bold text-[#9E2016]">
                 Word on the Street
               </span>
-              <h2 className="font-display text-3xl font-bold text-[#9E2016] mt-1">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#9E2016] mt-0.5">
                 What Our Partners Say
               </h2>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-xs sm:text-sm text-gray-600 mt-0.5">
                 Trusted across general trade, modern retail, and regional distributors.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
               
-              <div className="bg-[#FAF6F0] p-6 rounded-2xl border border-[#EAE2D5] flex flex-col justify-between">
+              <div className="bg-[#FAF6F0] p-5 rounded-2xl border border-[#EAE2D5] flex flex-col justify-between">
                 <div>
-                  <div className="text-[#E09F3E] text-sm mb-2">★★★★★</div>
-                  <p className="text-sm text-gray-700 italic leading-relaxed">
+                  <div className="text-[#E09F3E] text-xs mb-1.5">★★★★★</div>
+                  <p className="text-xs sm:text-sm text-gray-700 italic leading-relaxed">
                     “Kataria Foods has been our trusted confectionery partner for years. Their commitment to quality and timely delivery is unparalleled. Our customers love their fruit bars!”
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#EAE2D5] flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#F9E4B7] text-[#9E2016] font-bold flex items-center justify-center">
+                <div className="mt-4 pt-3 border-t border-[#EAE2D5] flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-[#F9E4B7] text-[#9E2016] font-bold flex items-center justify-center text-xs">
                     R
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900">Rajesh Kumar</p>
-                    <p className="text-xs text-gray-500">Distributor, North India</p>
+                    <p className="text-xs font-bold text-gray-900">Rajesh Kumar</p>
+                    <p className="text-[11px] text-gray-500">Distributor, North India</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-[#FAF6F0] p-6 rounded-2xl border border-[#EAE2D5] flex flex-col justify-between">
+              <div className="bg-[#FAF6F0] p-5 rounded-2xl border border-[#EAE2D5] flex flex-col justify-between">
                 <div>
-                  <div className="text-[#E09F3E] text-sm mb-2">★★★★★</div>
-                  <p className="text-sm text-gray-700 italic leading-relaxed">
+                  <div className="text-[#E09F3E] text-xs mb-1.5">★★★★★</div>
+                  <p className="text-xs sm:text-sm text-gray-700 italic leading-relaxed">
                     “The variety and authentic taste of Kataria Foods candies make them a top seller in our store. The fresh-lock packaging attracts premium customers.”
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#EAE2D5] flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#F9E4B7] text-[#9E2016] font-bold flex items-center justify-center">
+                <div className="mt-4 pt-3 border-t border-[#EAE2D5] flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-[#F9E4B7] text-[#9E2016] font-bold flex items-center justify-center text-xs">
                     P
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900">Priya Sharma</p>
-                    <p className="text-xs text-gray-500">Retail Partner, Mumbai</p>
+                    <p className="text-xs font-bold text-gray-900">Priya Sharma</p>
+                    <p className="text-[11px] text-gray-500">Retail Partner, Mumbai</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-[#FAF6F0] p-6 rounded-2xl border border-[#EAE2D5] flex flex-col justify-between">
+              <div className="bg-[#FAF6F0] p-5 rounded-2xl border border-[#EAE2D5] flex flex-col justify-between">
                 <div>
-                  <div className="text-[#E09F3E] text-sm mb-2">★★★★★</div>
-                  <p className="text-sm text-gray-700 italic leading-relaxed">
+                  <div className="text-[#E09F3E] text-xs mb-1.5">★★★★★</div>
+                  <p className="text-xs sm:text-sm text-gray-700 italic leading-relaxed">
                     “A great range of products, especially the fruit bars and diamond katlis. Consistent quality and good profit margins. Proud to partner with Kataria Foods.”
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#EAE2D5] flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#F9E4B7] text-[#9E2016] font-bold flex items-center justify-center">
+                <div className="mt-4 pt-3 border-t border-[#EAE2D5] flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-[#F9E4B7] text-[#9E2016] font-bold flex items-center justify-center text-xs">
                     A
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900">Amit Singh</p>
-                    <p className="text-xs text-gray-500">Wholesaler, Gujarat</p>
+                    <p className="text-xs font-bold text-gray-900">Amit Singh</p>
+                    <p className="text-[11px] text-gray-500">Wholesaler, Gujarat</p>
                   </div>
                 </div>
               </div>
@@ -910,40 +935,40 @@ export default function App() {
       </main>
 
       {/* Global Footer */}
-      <footer className="bg-[#7A1810] text-white pt-14 pb-8 border-t border-[#EAE2D5]/20">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <footer className="bg-[#7A1810] text-white pt-8 pb-5 border-t border-[#EAE2D5]/20">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
           
           {/* 4 Trust Badges Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12 border-b border-white/10">
-            <div className="flex items-center gap-3">
-              <Leaf className="w-7 h-7 text-[#E09F3E] shrink-0" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pb-6 border-b border-white/10">
+            <div className="flex items-center gap-2.5">
+              <Leaf className="w-6 h-6 text-[#E09F3E] shrink-0" />
               <div>
-                <h5 className="text-sm font-bold text-white">Fiber-Rich Goodness</h5>
-                <p className="text-xs text-[#F9E4B7]/70">Keeps you fuller, longer</p>
+                <h5 className="text-xs font-bold text-white">Fiber-Rich Goodness</h5>
+                <p className="text-[11px] text-[#F9E4B7]/70">Keeps you fuller, longer</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Heart className="w-7 h-7 text-[#E09F3E] shrink-0" />
+            <div className="flex items-center gap-2.5">
+              <Heart className="w-6 h-6 text-[#E09F3E] shrink-0" />
               <div>
-                <h5 className="text-sm font-bold text-white">0% Cholesterol</h5>
-                <p className="text-xs text-[#F9E4B7]/70">Guilt-free every time</p>
+                <h5 className="text-xs font-bold text-white">0% Cholesterol</h5>
+                <p className="text-[11px] text-[#F9E4B7]/70">Guilt-free every time</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <CheckCircle2 className="w-7 h-7 text-[#E09F3E] shrink-0" />
+            <div className="flex items-center gap-2.5">
+              <CheckCircle2 className="w-6 h-6 text-[#E09F3E] shrink-0" />
               <div>
-                <h5 className="text-sm font-bold text-white">Real Fruit, Real Taste</h5>
-                <p className="text-xs text-[#F9E4B7]/70">No artificial nonsense</p>
+                <h5 className="text-xs font-bold text-white">Real Fruit, Real Taste</h5>
+                <p className="text-[11px] text-[#F9E4B7]/70">No artificial nonsense</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Award className="w-7 h-7 text-[#E09F3E] shrink-0" />
+            <div className="flex items-center gap-2.5">
+              <Award className="w-6 h-6 text-[#E09F3E] shrink-0" />
               <div>
-                <h5 className="text-sm font-bold text-white">Heritage Quality</h5>
-                <p className="text-xs text-[#F9E4B7]/70">Kataria Grah Udyog craft</p>
+                <h5 className="text-xs font-bold text-white">Heritage Quality</h5>
+                <p className="text-[11px] text-[#F9E4B7]/70">Kataria Grah Udyog craft</p>
               </div>
             </div>
           </div>
