@@ -147,7 +147,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     className="w-18 h-18 object-cover rounded-xl bg-[#FAF6F0] shrink-0 border border-gray-100"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
-                      (e.target as HTMLElement).style.display = 'none';
+                      const target = e.currentTarget;
+                      if (!target.dataset.fallbackTried) {
+                        target.dataset.fallbackTried = 'true';
+                        if (target.src.includes('/images/')) {
+                          target.src = target.src.replace('/images/', '/src/assets/images/');
+                        }
+                      } else {
+                        target.style.display = 'none';
+                      }
                     }}
                   />
                   <div className="flex-1 min-w-0">

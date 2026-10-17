@@ -54,6 +54,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 alt={product.name} 
                 className="w-full h-72 md:h-80 object-cover rounded-2xl shadow-sm"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.fallbackTried) {
+                    target.dataset.fallbackTried = 'true';
+                    if (target.src.includes('/images/')) {
+                      target.src = target.src.replace('/images/', '/src/assets/images/');
+                    }
+                  }
+                }}
               />
               <span className="absolute top-8 left-8 bg-[#C0392B] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
                 {product.tag}

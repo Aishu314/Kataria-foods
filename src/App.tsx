@@ -104,6 +104,18 @@ export default function App() {
     }
   };
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.currentTarget;
+    if (!target.dataset.fallbackTried) {
+      target.dataset.fallbackTried = 'true';
+      if (target.src.includes('/images/')) {
+        target.src = target.src.replace('/images/', '/src/assets/images/');
+      } else if (target.src.includes('/src/assets/images/')) {
+        target.src = target.src.replace('/src/assets/images/', '/images/');
+      }
+    }
+  };
+
   const totalCartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
@@ -316,75 +328,78 @@ export default function App() {
         </section>
 
         {/* Hero Section */}
-        <section className="relative py-6 md:py-10 overflow-hidden bg-[#FAF6F0] border-b border-[#EAE2D5]">
+        <section className="relative py-8 md:py-12 overflow-hidden bg-[#FAF6F0] border-b border-[#EAE2D5]">
           <div className="max-w-7xl mx-auto px-3 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-              
-              <div className="lg:col-span-6 flex flex-col items-start gap-4">
-                <div className="inline-flex items-center gap-1.5 bg-[#F9E4B7]/80 text-[#7A1810] px-3 py-1 rounded-full text-xs font-bold tracking-wide border border-[#EAE2D5]">
-                  <Sparkles className="w-3 h-3 text-[#C0392B]" />
-                  <span>Kataria Grah Udyog • Since 1984</span>
+            
+            {/* Centered Hero Heading & Description in the Middle */}
+            <div className="max-w-3xl mx-auto flex flex-col items-center text-center gap-3.5 mb-8 sm:mb-10">
+              <div className="inline-flex items-center gap-1.5 bg-[#F9E4B7]/80 text-[#7A1810] px-3.5 py-1 rounded-full text-xs font-bold tracking-wide border border-[#EAE2D5] shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#C0392B]" />
+                <span>Kataria Grah Udyog • Since 1984</span>
+              </div>
+
+              <h1 className="font-display hero-headline text-4xl sm:text-5xl lg:text-6xl text-[#9E2016] font-bold leading-[1.1] tracking-tight text-center">
+                Meet your new <br className="hidden sm:inline" />
+                <span className="italic font-normal text-[#7A1810]">snack-time favourites.</span>
+              </h1>
+
+              <p className="text-base md:text-lg text-[#55443B] leading-relaxed max-w-2xl text-center mx-auto">
+                Authentic sun-ripened Alphonso pulps, nostalgic sour imli bites, handcrafted fruit katlis, and refreshing raw mango candies. Generations of Rajasthani confectionery craftsmanship, made for modern wholesome cravings.
+              </p>
+
+              {/* Centered Action Buttons */}
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2">
+                <a 
+                  href="#confectionery" 
+                  className="bg-[#C0392B] hover:bg-[#7A1810] text-white font-bold text-sm px-7 py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center gap-2 group"
+                >
+                  <span>EXPLORE THE NEW RANGE</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a 
+                  href="#bestsellers" 
+                  className="bg-white hover:bg-[#F9E4B7]/40 text-[#7A1810] border border-[#EAE2D5] font-bold text-sm px-6 py-3.5 rounded-xl transition-colors shadow-xs"
+                >
+                  View Bestsellers
+                </a>
+              </div>
+            </div>
+
+            {/* Value Props & Hero Visual Showcase */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              {/* Value Prop Badges */}
+              <div className="lg:col-span-5 grid grid-cols-2 gap-3">
+                <div className="bg-[#FFFDF9] p-3.5 sm:p-4 rounded-xl border border-[#EAE2D5] text-center shadow-xs">
+                  <Leaf className="w-5 sm:w-6 h-5 sm:h-6 text-[#C0392B] mx-auto mb-1" />
+                  <p className="text-xs font-bold text-gray-900">100% Real Fruit</p>
+                  <p className="text-[11px] text-gray-500">Zero wax or gelatine</p>
                 </div>
-
-                <h1 className="font-display hero-headline text-4xl sm:text-5xl lg:text-6xl text-[#9E2016] font-bold leading-[1.1] tracking-tight">
-                  Meet your new <br />
-                  <span className="italic font-normal text-[#7A1810]">snack-time favourites.</span>
-                </h1>
-
-                <p className="text-base md:text-lg text-[#55443B] leading-relaxed max-w-xl">
-                  Authentic sun-ripened Alphonso pulps, nostalgic sour imli bites, handcrafted fruit katlis, and refreshing raw mango candies. Generations of Rajasthani confectionery craftsmanship, made for modern wholesome cravings.
-                </p>
-
-                {/* Value Prop Badges */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full pt-2">
-                  <div className="bg-[#FFFDF9] p-3 rounded-xl border border-[#EAE2D5] text-center shadow-xs">
-                    <Leaf className="w-5 h-5 text-[#C0392B] mx-auto mb-1" />
-                    <p className="text-xs font-bold text-gray-900">100% Real Fruit</p>
-                    <p className="text-[11px] text-gray-500">Zero wax or gelatine</p>
-                  </div>
-                  <div className="bg-[#FFFDF9] p-3 rounded-xl border border-[#EAE2D5] text-center shadow-xs">
-                    <Heart className="w-5 h-5 text-[#4A6B35] mx-auto mb-1" />
-                    <p className="text-xs font-bold text-gray-900">0% Cholesterol</p>
-                    <p className="text-[11px] text-gray-500">Clean guilt-free chew</p>
-                  </div>
-                  <div className="bg-[#FFFDF9] p-3 rounded-xl border border-[#EAE2D5] text-center shadow-xs">
-                    <Award className="w-5 h-5 text-[#E09F3E] mx-auto mb-1" />
-                    <p className="text-xs font-bold text-gray-900">Royal Heritage</p>
-                    <p className="text-[11px] text-gray-500">Traditional recipes</p>
-                  </div>
-                  <div className="bg-[#FFFDF9] p-3 rounded-xl border border-[#EAE2D5] text-center shadow-xs">
-                    <ShieldCheck className="w-5 h-5 text-[#9E2016] mx-auto mb-1" />
-                    <p className="text-xs font-bold text-gray-900">Hygienic Pack</p>
-                    <p className="text-[11px] text-gray-500">Freshness sealed</p>
-                  </div>
+                <div className="bg-[#FFFDF9] p-3.5 sm:p-4 rounded-xl border border-[#EAE2D5] text-center shadow-xs">
+                  <Heart className="w-5 sm:w-6 h-5 sm:h-6 text-[#4A6B35] mx-auto mb-1" />
+                  <p className="text-xs font-bold text-gray-900">0% Cholesterol</p>
+                  <p className="text-[11px] text-gray-500">Clean guilt-free chew</p>
                 </div>
-
-                {/* Hero Action Buttons */}
-                <div className="flex flex-wrap items-center gap-4 pt-4">
-                  <a 
-                    href="#confectionery" 
-                    className="bg-[#C0392B] hover:bg-[#7A1810] text-white font-bold text-sm px-7 py-4 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center gap-2 group"
-                  >
-                    <span>EXPLORE THE NEW RANGE</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                  <a 
-                    href="#bestsellers" 
-                    className="bg-white hover:bg-[#F9E4B7]/40 text-[#7A1810] border border-[#EAE2D5] font-bold text-sm px-6 py-4 rounded-xl transition-colors shadow-xs"
-                  >
-                    View Bestsellers
-                  </a>
+                <div className="bg-[#FFFDF9] p-3.5 sm:p-4 rounded-xl border border-[#EAE2D5] text-center shadow-xs">
+                  <Award className="w-5 sm:w-6 h-5 sm:h-6 text-[#E09F3E] mx-auto mb-1" />
+                  <p className="text-xs font-bold text-gray-900">Royal Heritage</p>
+                  <p className="text-[11px] text-gray-500">Traditional recipes</p>
+                </div>
+                <div className="bg-[#FFFDF9] p-3.5 sm:p-4 rounded-xl border border-[#EAE2D5] text-center shadow-xs">
+                  <ShieldCheck className="w-5 sm:w-6 h-5 sm:h-6 text-[#9E2016] mx-auto mb-1" />
+                  <p className="text-xs font-bold text-gray-900">Hygienic Pack</p>
+                  <p className="text-[11px] text-gray-500">Freshness sealed</p>
                 </div>
               </div>
 
               {/* Hero Visual Banner Image Card */}
-              <div className="lg:col-span-6 relative">
+              <div className="lg:col-span-7 relative">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
                   <img 
-                    src="/src/assets/images/hero_kataria_sweets_1792174204979.jpg"
+                    src="/images/hero_kataria_sweets_1792174204979.jpg"
                     alt="Kataria Foods Heritage Assortment"
-                    className="w-full h-[440px] object-cover object-center group-hover:scale-102 transition-transform duration-700"
+                    className="w-full h-[320px] sm:h-[380px] object-cover object-center group-hover:scale-102 transition-transform duration-700"
                     referrerPolicy="no-referrer"
+                    onError={handleImageError}
                   />
                   <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg border border-[#EAE2D5] flex items-center justify-between">
                     <div>
@@ -401,8 +416,8 @@ export default function App() {
                   </div>
                 </div>
               </div>
-
             </div>
+
           </div>
         </section>
 
@@ -433,10 +448,11 @@ export default function App() {
               >
                 <div className="h-60 bg-[#F9E4B7]/40 overflow-hidden relative">
                   <img 
-                    src="/src/assets/images/cat_fruit_bars_1792174206008.jpg"
+                    src="/images/cat_fruit_bars_1792174206008.jpg"
                     alt="Kataria Fruit Bars"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
+                    onError={handleImageError}
                   />
                   <span className="absolute top-3 left-3 bg-[#C0392B] text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                     Signature
@@ -466,10 +482,11 @@ export default function App() {
               >
                 <div className="h-60 bg-[#F9E4B7]/40 overflow-hidden relative">
                   <img 
-                    src="/src/assets/images/cat_fruit_katli_1792174206783.jpg"
+                    src="/images/cat_fruit_katli_1792174206783.jpg"
                     alt="Kataria Fruit Katli"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
+                    onError={handleImageError}
                   />
                   <span className="absolute top-3 left-3 bg-[#4A6B35] text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                     Guilt-Free Mithai
@@ -499,10 +516,11 @@ export default function App() {
               >
                 <div className="h-60 bg-[#F9E4B7]/40 overflow-hidden relative">
                   <img 
-                    src="/src/assets/images/cat_digestives_candies_1792174206869.jpg"
+                    src="/images/cat_digestives_candies_1792174206869.jpg"
                     alt="Kataria Candies and Digestives"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
+                    onError={handleImageError}
                   />
                   <span className="absolute top-3 left-3 bg-[#E09F3E] text-[#7A1810] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                     Ayurvedic & Tangy
@@ -585,6 +603,7 @@ export default function App() {
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         referrerPolicy="no-referrer"
+                        onError={handleImageError}
                       />
                       <span className="absolute top-3 left-3 bg-[#C0392B] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                         Sale
@@ -680,6 +699,7 @@ export default function App() {
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         referrerPolicy="no-referrer"
+                        onError={handleImageError}
                       />
                       <span 
                         className="absolute top-2.5 left-2.5 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"
@@ -746,10 +766,11 @@ export default function App() {
               <div className="lg:col-span-5">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg border-4 border-white bg-white p-1.5 group">
                   <img 
-                    src="/src/assets/images/craft_archive_heritage_1792174206620.jpg"
+                    src="/images/craft_archive_heritage_1792174206620.jpg"
                     alt="Artisanal confectionery craft at Kataria Foods"
                     className="w-full h-[320px] sm:h-[350px] object-cover object-center rounded-xl group-hover:scale-102 transition-transform duration-500"
                     referrerPolicy="no-referrer"
+                    onError={handleImageError}
                   />
                   <div className="p-3 text-center">
                     <span className="text-[11px] font-bold text-[#9E2016] uppercase tracking-widest">

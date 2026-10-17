@@ -99,6 +99,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       src={product.image} 
                       alt={product.name} 
                       className="w-12 h-12 object-cover rounded-lg border border-[#EAE2D5] shrink-0"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (!target.dataset.fallbackTried) {
+                          target.dataset.fallbackTried = 'true';
+                          if (target.src.includes('/images/')) {
+                            target.src = target.src.replace('/images/', '/src/assets/images/');
+                          }
+                        }
+                      }}
                     />
                     <div className="min-w-0">
                       <h5 className="text-sm font-bold text-gray-900 group-hover:text-[#9E2016] transition-colors truncate">
